@@ -43,7 +43,7 @@ The following series of figures show line charts that fine dust concentrations a
 
 6 different models, `DummyRegressr`(as a baseline), `Ridge`, `RandomForest`, `XGBoost`, `LightGBM`, and `CatBoost`, were utilized, and their performace was checked by cross-validation. According to the cross-validation, `LightGBM` and `CatBoost` performed best among the models tested. Considering the computation speed, `LightGBM` was mainly used for analysis in the subsequent analysis. The following figures show the prediction by each machine learning model.
 
-<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/predictions_by_MLs_monthly.png" style="width:800px;height:1500px;background-color:white">
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/predictions_by_MLs_monthly.png" style="width:800px;height:1200px;background-color:white">
 
 ### 3.2. Deep Learning
 
