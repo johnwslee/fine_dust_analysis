@@ -44,9 +44,34 @@ The following series of figures show line charts that fine dust concentrations a
 
 ### 3.2. Deep Learning
 
+In addition to the machine learning models, neural network was also used to check its performance. The following figure shows the prediction by neural network. The performance of neural network seemed similar to the machine learning models.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/prediction_by_DL_monthly.png" style="width:800px;height:250px;background-color:white">
+
 
 ## 4. Feature Importance
 
+As mentioned in Introduction, the purpose of this study was to find out what weather parameters affect the fine dust concentration in Seoul. By looking at the features the machine learning model thought important, I think we can get some idea what kind of weather parameters are correlated with the fine dust concentration. For this analysis, `shap` library was used to check on the feature importances of `LightGBM` model.
+
+First, the follwing figure shows the rank of the weather parameters listed in descending order. The result was close to that of intuition and the results of EDA. `wind_direction` was the most important parameter in determining the fine dust concentration.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/feature_rank.png" style="width:600px;height:700px;background-color:white">
+
+The next figure shows how each weather parameter affect the fine dust concentration. Here, the red and blue indicates the high and low value of the parameter, respectively. 
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/feature_effect.png" style="width:600px;height:700px;background-color:white">
+
+Among the weather parameters, 3 of them that looked most important were looked into more deeply. The first parameter was `wind_direction`, whose figure is shown below. The value for `wind_direction` ranged from 0 to 360. Since the values were scaled, -1.9/1.7, -1.0, 0, and 0.8 in the figure correspond to wind direction of North, East, South, and West. This graph tells us that the particle count would be lowest when the wind blows from East, and it would be highest when the wind blows from West, which matches well with the actual situation in Korea.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/wind_direction_effect.png" style="width:600px;height:400px;background-color:white">
+
+The next parameter was `humidity(%)`. As shown in the figure below, the fine dust concentration got small when the `humidity(%)` was really high. This may had something to do with rain, because rain tends to remove the find dust particles in the air. The graph for precipitation shown below backs up this explanation.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/humidity_effect.png" style="width:600px;height:400px;background-color:white">
+
+The following figure shows the effect of `precipitation(mm)` on the fine dust concentration. As mentioned earlier, the figure clearly shows that, if there were any amount of precipitation, the partcle counts tended to be low.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/precipitation_effect.png" style="width:600px;height:400px;background-color:white">
 
 ## 5. Further Analysis
 
