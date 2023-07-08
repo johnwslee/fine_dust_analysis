@@ -51,7 +51,7 @@ In addition to the machine learning models, neural network was also used to chec
 
 ## 4. Feature Importance
 
-As mentioned in Introduction, the purpose of this study was to find out what weather parameters affect the fine dust concentration in Seoul. By looking at the features the machine learning model thought important, I think we can get some idea what kind of weather parameters are correlated with the fine dust concentration. For this analysis, `shap` library was used to check on the feature importances of `LightGBM` model.
+As mentioned in Introduction, the purpose of this study was to find out what kind of weather parameters affect the fine dust concentration in Seoul. By looking at the features that the machine learning model thought important, I thought we could get some idea about the correlation between the weather parameters and the fine dust concentration. For this analysis, `shap` library was used to check on the feature importances of `LightGBM` model.
 
 First, the follwing figure shows the rank of the weather parameters listed in descending order. The result was close to that of intuition and the results of EDA. `wind_direction` was the most important parameter in determining the fine dust concentration.
 
@@ -75,7 +75,23 @@ The following figure shows the effect of `precipitation(mm)` on the fine dust co
 
 ## 5. Further Analysis
 
+The following figure shows the prediction by `LightGBM` model. According to the figure, it seemed that the prediction error got worse as the prediction was done on the later years.
 
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/prediction_by_lgbm.png" style="width:800px;height:250px;background-color:white">
+
+In order to check if the prediction accuracy really get deteriorated, the MAPE was calculated for the prediction of each year, and the result is shown in the figure below. The figure clearly shows that the error got bigger for later years.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_years.png" style="width:600px;height:400px;background-color:white">
+
+In order to further analyze, the LightGBM model was trained with different range of data and its performance was investigated. For the analysis, the duration of the train data was kept at 8 years, while different range of data (such as 2008 ~ 2015, 2009 ~ 2016, etc.) was used for training. The following figure is the result, clearly showing that the prediction performance of the model got improved as the train data contained more recent data.
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_1.png" style="width:600px;height:400px;background-color:white">
+
+The next analysis was carried out such that the duration of the train data was not kept at 8 years any more. Instead, the model was trained using data that covered wider range of data(such as 2008 ~ 2015, 2008 ~ 2016, etc.).
+
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_2.png" style="width:600px;height:400px;background-color:white">
+
+The above graph shows similar pattern as the previous figure. However, unexpectedly, the MAPE slightly increased when the model was trained with data containing wider range. This might be due to the fact that, as the model was trained for a wider range of data, too old data adversely affected the model's prediction for the future by making the model too "old fashioned".
 
 ## How to Run the Notebooks Locally
 
