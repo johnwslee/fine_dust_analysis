@@ -1,24 +1,27 @@
 ![license
 status](https://img.shields.io/github/license/johnwslee/fine_dust_analysis)
 
-# Study on the Relationship between Weather Parameters and Fine Dust Concentration in Seoul, South Korea
+# Study on the Relationship between Weather Parameters and Fine Dust Concentration in Seoul, Korea
 
 **Author:** John W.S. Lee
 
 ## 1. Introduction
 
-In Seoul, South Korea, there are certain seasons when the air quality gets really bad because of the high concentration of fine dusts. The concentration of fine dusts are measured in terms of the density of fine particles, and based on the size of the particle, there are two metrics: (1) PM10 - density of particulate matter less than 10um, and (2) PM2.5 -  density of particulate matter less than 2.5um (Please note that the density of PM2.5 was written as PM25 in the notebooks since the dot can cause unwanted results). It was one day during winter in 2023 when the air quality was really  bad. I just got curious what kind of weather parameters affect the concentration of fine dust, and that was the sole motivation of this study. The detailed procedure and codes can be found in the [notebook folder](https://github.com/johnwslee/fine_dust_analysis/tree/main/notebooks), whereas this README shows the overall approaches and some of the interesting results that I found.
-Before I move on to the next section, I just want to say that the purpose of using the machine learning in this study was not to predict the concentration of the fine dust, it was rather to take a look at the features that the models thought important, thereby fulfilling my curiosity.
+In Seoul, there are certain seasons when the air quality gets really bad due to the high concentration of fine dust. The concentration of fine dust is measured in terms of the density of fine particles. Based on the size of the particle, there are two metrics: (1) PM10 - density of particulate matter less than 10um, and (2) PM2.5 - density of particulate matter less than 2.5um (Please note that the density of PM2.5 was written as PM25 in the notebooks, as the dot can cause unwanted results).
+
+It was a winter day in 2023 when the air quality was particularly poor. I became curious about the weather parameters that affect the concentration of fine dust, and that was the sole motivation for this study. The detailed procedure and codes can be found in the [notebook folder](https://github.com/johnwslee/fine_dust_analysis/tree/main/notebooks), while this README provides an overview of the approaches and some interesting results that I discovered.
+
+Before I move on to the next section, I want to clarify that the purpose of using machine learning in this study was not to predict the concentration of fine dust. Rather, it was to examine the features that the models deemed important, satisfying my curiosity.
 
 ## 2. Data
 
 ### 2.1. Fine Dust Dataset
 
-The fine dust data was downloaded from [Public Data Portal](https://www.data.go.kr/data/15089266/fileData.do). The data contains hourly data for fine dust measured in many different regions in Seoul, for the period of 2008 to 2021. For this study, I extracted the average values of the fine dust for each time.
+The fine dust data was downloaded from [Public Data Portal](https://www.data.go.kr/data/15089266/fileData.do). The dataset contains hourly measurements of fine dust in various regions of Seoul, spanning from 2008 to 2021. For this study, I extracted the average values of fine dust for each time period.
 
 ### 2.2. Weather Dataset
 
-Weather data was downloaded from [Open MET Data Portal](https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36&tabNo=1) by KMA (Korea Meteorological Administration) Weather Data Service. The original dataset had 27 columns, but only 11 columns that seem relevant were used in this study. The chosen weather parameters were `date`, `temp(°C)`, `precipitation(mm)`, `wind_speed(m/s)`, `wind_direction`, `humidity(%)`, `vapor_P(hPa)`, `dew_point_temp(°C)`, `local_P(hPa)`, `cloud_cover`, and `lowest_ceiling(100m)`.
+Weather data was downloaded from [Open MET Data Portal](https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36&tabNo=1) by KMA (Korea Meteorological Administration) Weather Data Service. The original dataset had 27 columns, but only 11 columns that seemed relevant were used in this study. The chosen weather parameters were `date`, `temp(°C)`, `precipitation(mm)`, `wind_speed(m/s)`, `wind_direction`, `humidity(%)`, `vapor_P(hPa)`, `dew_point_temp(°C)`, `local_P(hPa)`, `cloud_cover`, and `lowest_ceiling(100m)`.
 
 ### 2.3. Exploratory Data Analysis
 
@@ -51,7 +54,7 @@ In addition to the machine learning models, neural network was also used to chec
 
 ## 4. Feature Importance
 
-As mentioned in Introduction, the purpose of this study was to find out what kind of weather parameters affect the fine dust concentration in Seoul. By looking at the features that the machine learning model thought important, I thought we could get some idea about the correlation between the weather parameters and the fine dust concentration. For this analysis, `shap` library was used to check on the feature importances of `LightGBM` model.
+As mentioned in the introduction, the purpose of this study was to determine which weather parameters affect the concentration of fine dust in Seoul. By examining the features identified as important by the machine learning model, I aimed to gain insights into the correlation between weather parameters and fine dust concentration. To analyze this, I utilized the `shap` library to assess the feature importances of the `LightGBM` model.
 
 First, the follwing figure shows the rank of the weather parameters listed in descending order. The result was close to that of intuition and the results of EDA. `wind_direction` was the most important parameter in determining the fine dust concentration.
 
@@ -61,7 +64,9 @@ The next figure shows how each weather parameter affect the fine dust concentrat
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/feature_effect.png" style="width:600px;height:700px;background-color:white">
 
-Among the weather parameters, 3 of them that looked most important were looked into more deeply. The first parameter was `wind_direction`, whose figure is shown below. The value for `wind_direction` ranged from 0 to 360. Since the values were scaled, -1.9/1.7, -1.0, 0, and 0.8 in the figure correspond to wind direction of North, East, South, and West. This graph tells us that the particle count would be lowest when the wind blows from East, and it would be highest when the wind blows from West, which matches well with the actual situation in Korea.
+Among the weather parameters, three of them appeared to be the most important, and further analysis was conducted on them. 
+
+The first parameter was `wind_direction`, as shown in the figure below. The values for `wind_direction` ranged from 0 to 360. Since the values were scaled, -1.9/1.7, -1.0, 0, and 0.8 in the figure corresponded to the wind direction of North, East, South, and West, respectively. This graph indicated that the particle count was lowest when the wind blew from the East, and highest when the wind blew from the West. These findings aligned well with the actual situation in Korea.
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/wind_direction_effect.png" style="width:600px;height:400px;background-color:white">
 
@@ -75,23 +80,23 @@ The following figure shows the effect of `precipitation(mm)` on the fine dust co
 
 ## 5. Further Analysis
 
-The following figure shows the prediction by `LightGBM` model. According to the figure, it seemed that the prediction error got worse as the prediction was done on the later years.
+The figure below displays the predictions made by the `LightGBM` model. Based on the figure, it appears that the prediction error worsened as the predictions were made for later years. 
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/prediction_by_lgbm.png" style="width:800px;height:250px;background-color:white">
 
-In order to check if the prediction accuracy really get deteriorated, the MAPE was calculated for the prediction of each year, and the result is shown in the figure below. The figure clearly shows that the error got bigger for later years.
+To assess whether the prediction accuracy indeed deteriorated, the Mean Absolute Percentage Error (MAPE) was calculated for each year's prediction, as shown in the figure below. The figure clearly indicates that the error increased for the later years.
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_years.png" style="width:600px;height:400px;background-color:white">
 
-In order to further analyze, the LightGBM model was trained with different range of data and its performance was investigated. For the analysis, the duration of the train data was kept at 8 years, while different range of data (such as 2008 ~ 2015, 2009 ~ 2016, etc.) was used for training. The following figure is the result, clearly showing that the prediction performance of the model got improved as the train data contained more recent data.
+To conduct further analysis, the `LightGBM` model was trained using different ranges of data, and its performance was investigated. For this analysis, the duration of the training data was fixed at 8 years, while varying ranges of data (such as 2008-2015, 2009-2016, etc.). The resulting figure illustrates that the prediction performance of the model improved when the training data included more recent observations.
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_1.png" style="width:600px;height:400px;background-color:white">
 
-The next analysis was carried out such that the duration of the train data was not kept at 8 years any more. Instead, the model was trained using data that covered wider range of data(such as 2008 ~ 2015, 2008 ~ 2016, etc.).
+Next, an analysis was performed with a modified approach, where the duration of the training data was not limited to 8 years. Instead, the model was trained using data that covered a wider range (such as 2008-2015, 2008-2016, etc.).
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_2.png" style="width:600px;height:400px;background-color:white">
 
-The above graph shows similar pattern as the previous figure. However, unexpectedly, the MAPE slightly increased when the model was trained with data containing wider range. This might be due to the fact that, as the model was trained for a wider range of data, too old data adversely affected the model's prediction for the future by making the model too "old fashioned".
+The graph above exhibits a similar pattern to the previous figure. However, unexpectedly, the MAPE slightly increased when the model was trained with data encompassing a wider range. This could be attributed to the fact that including excessively old data in the training process affected the model's prediction for the future by making it too "old-fashioned".
 
 ## How to Run the Notebooks Locally
 
