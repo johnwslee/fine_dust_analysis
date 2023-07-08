@@ -18,7 +18,7 @@ The fine dust data was downloaded from [Public Data Portal](https://www.data.go.
 
 ### 2.2. Weather Dataset
 
-Weather data was downloaded from [Open MET Data Portal](https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36&tabNo=1) by KMA (Korea Meteorological Administration) Weather Data Service. The original dataset had 27 columns, but only 11 columns that seem relevant were used in this study. The chosen weather parameters were "date", "temp(°C)", "precipitation(mm)", "wind_speed(m/s)", "wind_direction", "humidity(%)", "vapor_P(hPa)", "dew_point_temp(°C)", "local_P(hPa)", "cloud_cover", and "lowest_ceiling(100m)".
+Weather data was downloaded from [Open MET Data Portal](https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36&tabNo=1) by KMA (Korea Meteorological Administration) Weather Data Service. The original dataset had 27 columns, but only 11 columns that seem relevant were used in this study. The chosen weather parameters were `date`, `temp(°C)`, `precipitation(mm)`, `wind_speed(m/s)`, `wind_direction`, `humidity(%)`, `vapor_P(hPa)`, `dew_point_temp(°C)`, `local_P(hPa)`, `cloud_cover`, and `lowest_ceiling(100m)`.
 
 ### 2.3. Exploratory Data Analysis
 
@@ -30,13 +30,14 @@ The following figure shows how the fine dust concentration has been fluctuating 
 
 #### 2.3.1. Weather Parameters vs Fine Dust Concentration
 
-The following series of figures show line charts that fine dust concentrations are plotted with each weather parameter. "wind_direction, "wind_speed", and "local_P(hPa)" showed a positive correlation with the particle density, whereas "temp(°C)", "precipitation(mm)", "humidity(%)", "vapor_P(hPa)", "dew_point_temp(°C)", and "cloud_cover" showed a negative correlation.  Among the parameters, the "wind_direction" showed the strongest correlation with the particle density. 
+The following series of figures show line charts that fine dust concentrations are plotted with each weather parameter. `wind_direction`, `wind_speed`, and `local_P(hPa)` showed a positive correlation with the particle density, whereas `temp(°C)`, `precipitation(mm)`, `humidity(%)`, `vapor_P(hPa)`, `dew_point_temp(°C)`, and `cloud_cover` showed a negative correlation.  Among the parameters, the `wind_direction` showed the strongest correlation with the particle density. 
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/fine_dust_all_history.png" style="width:800px;height:2000px;background-color:white">
 
 ## 3. Modeling
 
 ### 3.1. Machine Learning
+
 
 
 ### 3.2. Deep Learning
