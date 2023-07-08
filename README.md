@@ -32,7 +32,7 @@ The following figure shows how the fine dust concentration has been fluctuating 
 
 The following series of figures show line charts that fine dust concentrations are plotted with each weather parameter. "wind_direction, "wind_speed", and "local_P(hPa)" showed a positive correlation with the particle density, whereas "temp(°C)", "precipitation(mm)", "humidity(%)", "vapor_P(hPa)", "dew_point_temp(°C)", and "cloud_cover" showed a negative correlation.  Among the parameters, the "wind_direction" showed the strongest correlation with the particle density. 
 
-<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/fine_dust_all_history.png" style="width:800px;height:3000px;background-color:white">
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/fine_dust_all_history.png" style="width:800px;height:2000px;background-color:white">
 
 ## 3. Modeling
 
