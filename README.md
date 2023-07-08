@@ -26,7 +26,7 @@ Weather data was downloaded from [Open MET Data Portal](https://data.kma.go.kr/d
 
 The following figure shows how the fine dust concentration has been fluctuating since the year of 2008. The figure showed both particle counts had seasonality to a certain degree, and they seemed to be correlated to each other. 
 
-<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/fine_dust_over_years.png" style="width:800px;height:300px;background-color:white">
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/fine_dust_over_years.png" style="width:800px;height:250px;background-color:white">
 
 #### 2.3.1. Weather Parameters vs Fine Dust Concentration
 
