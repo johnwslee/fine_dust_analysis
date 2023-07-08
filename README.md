@@ -7,7 +7,7 @@ status](https://img.shields.io/github/license/johnwslee/fine_dust_analysis)
 
 ## 1. Introduction
 
-In Seoul, South Korea, there are certain seasons when the air quality gets really bad because of the high concentration of fine dusts. The concentration of fine dusts are measured in terms of the density of fine particles, and based on the size of the particle, there are two metrics: (1) PM10 - density of particulate matter less than 10$\mu$m, and (2) PM2.5 -  density of particulate matter less than 2.5$\mu$m (Please note that the density of PM2.5 was written as PM25 in the notebooks since the dot can cause unwanted results). It was one day during winter in 2023 when the air quality was really  bad. I just got curious what kind of weather parameters affect the concentration of fine dust, and that was the sole motivation of this study. The detailed procedure and codes can be found in the [notebook folder](https://github.com/johnwslee/fine_dust_analysis/tree/main/notebooks), whereas this README shows the overall approaches and some of the interesting results that I found.
+In Seoul, South Korea, there are certain seasons when the air quality gets really bad because of the high concentration of fine dusts. The concentration of fine dusts are measured in terms of the density of fine particles, and based on the size of the particle, there are two metrics: (1) PM10 - density of particulate matter less than 10um, and (2) PM2.5 -  density of particulate matter less than 2.5um (Please note that the density of PM2.5 was written as PM25 in the notebooks since the dot can cause unwanted results). It was one day during winter in 2023 when the air quality was really  bad. I just got curious what kind of weather parameters affect the concentration of fine dust, and that was the sole motivation of this study. The detailed procedure and codes can be found in the [notebook folder](https://github.com/johnwslee/fine_dust_analysis/tree/main/notebooks), whereas this README shows the overall approaches and some of the interesting results that I found.
 Before I move on to the next section, I just want to say that the purpose of using the machine learning in this study was not to predict the concentration of the fine dust, it was rather to take a look at the features that the models thought important, thereby fulfilling my curiosity.
 
 ## 2. Data
@@ -38,7 +38,9 @@ The following series of figures show line charts that fine dust concentrations a
 
 ### 3.1. Machine Learning
 
+6 different models, `DummyRegressr`(as a baseline), `Ridge`, `RandomForest`, `XGBoost`, `LightGBM`, and `CatBoost`, were utilized, and their performace was checked by cross-validation. According to the cross-validation, `LightGBM` and `CatBoost` performed best among the models tested. Considering the computation speed, `LightGBM` was mainly used for analysis in the subsequent analysis. The following figures show the prediction by each machine learning model.
 
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/predictions_by_MLs_monthly.png" style="width:800px;height:1500px;background-color:white">
 
 ### 3.2. Deep Learning
 
