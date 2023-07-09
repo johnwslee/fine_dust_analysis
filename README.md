@@ -90,11 +90,11 @@ To assess whether the prediction accuracy indeed deteriorated, the Mean Absolute
 
 To conduct further analysis, the `LightGBM` model was trained using different ranges of data, and its performance was investigated. For this analysis, the duration of the training data was fixed at 8 years, while varying ranges of data (such as 2008-2015, 2009-2016, etc.). The resulting figure illustrates that the prediction performance of the model improved when the training data included more recent observations.
 
-<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_1.png" style="width:600px;height:400px;background-color:white">
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_1.png" style="width:800px;height:400px;background-color:white">
 
 Next, an analysis was performed with a modified approach, where the duration of the training data was not limited to 8 years. Instead, the model was trained using data that covered a wider range (such as 2008-2015, 2008-2016, etc.).
 
-<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_2.png" style="width:600px;height:400px;background-color:white">
+<img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/MAPE_different_train_data_2.png" style="width:800px;height:400px;background-color:white">
 
 The graph above exhibits a similar pattern to the previous figure. However, unexpectedly, the MAPE slightly increased when the model was trained with data encompassing a wider range. This could be attributed to the fact that including excessively old data in the training process affected the model's prediction for the future by making it too "old-fashioned".
 
