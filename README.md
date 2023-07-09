@@ -78,7 +78,7 @@ The following figure shows the effect of `precipitation(mm)` on the fine dust co
 
 <img src="https://github.com/johnwslee/fine_dust_analysis/blob/main/img/precipitation_effect.png" style="width:600px;height:400px;background-color:white">
 
-## 5. Further Analysis
+## 5. Effect of Train Data on the Prediction Performance
 
 The figure below displays the predictions made by the `LightGBM` model. Based on the figure, it appears that the prediction error worsened as the predictions were made for later years. 
 
